@@ -1693,8 +1693,9 @@ void Player::addExperience(Creature* source, uint64_t exp, bool sendText/* = fal
 
 	//add experience by monster level
 	exp = exp * g_config.getExperienceStage(this->getLevel());
-	if (source->getMonster() && source->getLevel() > 0) {
-		exp = exp + ((exp * source->getLevel()) / 10);
+	const Monster* monster = source->getMonster();
+	if (monster && monster->getLevel() > 0) {
+		exp += (exp * source->getLevel()) / 10;
 	}
 
 	experience += exp;

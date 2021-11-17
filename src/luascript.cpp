@@ -2585,6 +2585,8 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("Monster", "isWalkingToSpawn", LuaScriptInterface::luaMonsterIsWalkingToSpawn);
 	registerMethod("Monster", "walkToSpawn", LuaScriptInterface::luaMonsterWalkToSpawn);
 
+	registerMethod("Monster", "getLevel", LuaScriptInterface::luaMonsterGetLevel);
+
 	// Npc
 	registerClass("Npc", "Creature", LuaScriptInterface::luaNpcCreate);
 	registerMetaMethod("Npc", "__eq", LuaScriptInterface::luaUserdataCompare);
@@ -8465,6 +8467,18 @@ int LuaScriptInterface::luaPlayerGetLevel(lua_State* L)
 	Player* player = getUserdata<Player>(L, 1);
 	if (player) {
 		lua_pushnumber(L, player->getLevel());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaMonsterGetLevel(lua_State* L)
+{
+	// monster:getLevel()
+	Monster* monster = getUserdata<Monster>(L, 1);
+	if (monster) {
+		lua_pushnumber(L, monster->getLevel());
 	} else {
 		lua_pushnil(L);
 	}
