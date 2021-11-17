@@ -224,6 +224,10 @@ class Creature : virtual public Thing
 			return baseSpeed;
 		}
 
+		uint32_t getLevel() const {
+			return (level) ? level : 0;
+		}
+
 		int32_t getHealth() const {
 			return health;
 		}
