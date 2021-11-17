@@ -52,7 +52,15 @@ Monster::Monster(MonsterType* mType) :
 	defaultOutfit = mType->info.outfit;
 	currentOutfit = mType->info.outfit;
 	skull = mType->info.skull;
-	level = uniform_random(mType->info.minLevel, mType->info.maxLevel);
+	int minLevel = mType->info.minLevel;
+	int maxLevel = mType->info.maxLevel;
+	int initialLevel = uniform_random(minLevel, maxLevel) - uniform_random(minLevel, maxLevel/2);
+	if (initialLevel > 0) {
+		initialLevel -=  uniform_random(minLevel, initialLevel - 1);
+	} else {
+		initialLevel =  uniform_random(minLevel, maxLevel/4);
+	}
+	level = initialLevel;
 	health = mType->info.health;
 	healthMax = mType->info.healthMax;
 	baseSpeed = mType->info.baseSpeed;

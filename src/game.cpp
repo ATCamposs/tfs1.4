@@ -4075,6 +4075,9 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 			return false;
 		}
 
+		damage.primary.value = std::abs(damage.primary.value);
+		damage.secondary.value = std::abs(damage.secondary.value);
+
 		Monster* monster = attacker ? attacker->getMonster() : nullptr;
 		if (monster && monster->getLevel() > 0) {
 			float bonusDmg = g_config.getFloat(ConfigManager::MLVL_BONUSDMG) * monster->getLevel();
@@ -4083,9 +4086,6 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 				damage.secondary.value += std::round(damage.secondary.value * bonusDmg);
 			}
 		}
-
-		damage.primary.value = std::abs(damage.primary.value);
-		damage.secondary.value = std::abs(damage.secondary.value);
 
 		int32_t healthChange = damage.primary.value + damage.secondary.value;
 		if (healthChange == 0) {
