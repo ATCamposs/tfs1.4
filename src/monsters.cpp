@@ -907,8 +907,8 @@ MonsterType* Monsters::loadMonster(const std::string& file, const std::string& m
 			std::cout << "[Error - Monsters::loadMonster] Missing max level. " << file << std::endl;
 		}
 	} else {
-		mType->info.minLevel = 1;
-		mType->info.maxLevel = 100;
+		mType->info.minLevel = ConfigManager::MONSTER_MIN_LEVEL;
+		mType->info.maxLevel = ConfigManager::MONSTER_MAX_LEVEL;
 	}
 	
 	if ((node = monsterNode.child("flags"))) {

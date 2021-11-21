@@ -136,6 +136,8 @@ class ConfigManager
 			VIP_PREMIUM_LIMIT,
 			DEPOT_FREE_LIMIT,
 			DEPOT_PREMIUM_LIMIT,
+			MONSTER_MIN_LEVEL,
+			MONSTER_MAX_LEVEL,
 
 			LAST_INTEGER_CONFIG /* this must be the last one */
 		};
